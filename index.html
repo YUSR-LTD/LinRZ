@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinRZ - Universal Compression Tool by YUSR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .app-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        .company-name {
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #1a1a1a;
+        }
+
+        .nav-download {
+            background: #1a1a1a;
+            color: white !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-download:hover {
+            background: #000000;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            text-align: center;
+        }
+
+        .hero-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #1a1a1a;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: #f9fafb;
+            padding: 4rem 0;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #6b7280;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem;
+            border-radius: 16px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            border-color: #d1d5db;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* Formats Section */
+        .formats {
+            background: #f9fafb;
+            padding: 6rem 0;
+        }
+
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .format-badge {
+            padding: 1.2rem 1.5rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            transition: all 0.2s;
+            color: #1a1a1a;
+        }
+
+        .format-badge:hover {
+            border-color: #1a1a1a;
+            transform: scale(1.05);
+        }
+
+        /* Installation Section */
+        .installation {
+            padding: 6rem 0;
+        }
+
+        .install-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .install-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .step {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #1a1a1a;
+        }
+
+        .step h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .step p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            color: #10b981;
+            padding: 1.2rem;
+            border-radius: 8px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #1a1a1a;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #d1d5db;
+        }
+
+        .btn-white {
+            background: white;
+            color: #1a1a1a;
+        }
+
+        .btn-white:hover {
+            background: #f3f4f6;
+        }
+
+        /* Footer */
+        footer {
+            background: #f9fafb;
+            padding: 3rem 0;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-logo img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #1a1a1a;
+        }
+
+        .copyright {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .tab-btn {
+                border-bottom: none;
+                border-left: 3px solid transparent;
+                text-align: left;
+            }
+
+            .tab-btn.active {
+                border-left-color: #1a1a1a;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo-container">
+                <img src="logo.png" alt="LinRZ Logo">
+                <div class="logo-text">
+                    <span class="app-name">LinRZ</span>
+                    <span class="company-name">BY YUSR</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#formats">Formats</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#download" class="nav-download">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-logo">
+                <img src="logo.png" alt="LinRZ">
+            </div>
+            <h1>LinRZ</h1>
+            <p class="hero-subtitle">Universal compression tool that supports every archive format you need</p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">
+                    <span>⬇</span> Download for Free
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>8+</h3>
+                    <p>Supported Formats</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Free & Open Source</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Cross</h3>
+                    <p>Platform Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powerful Features</h2>
+                <p>Everything you need in a compression tool</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🗜️</div>
+                    <h3>Multi-Format Support</h3>
+                    <p>Compress and decompress ZIP, RAR, 7Z, TAR, TAR.GZ, TAR.BZ2, TAR.XZ and more with a single tool.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Modern GUI</h3>
+                    <p>Clean, intuitive interface inspired by 7-Zip with file browser, drag-and-drop support, and real-time progress.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Multi-threaded compression keeps your interface responsive while handling large files efficiently.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Detailed Statistics</h3>
+                    <p>View compression ratios, file counts, original and compressed sizes for every operation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Private</h3>
+                    <p>All compression happens locally on your machine. No cloud uploads, no data collection.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🆓</div>
+                    <h3>Free Forever</h3>
+                    <p>Open source and completely free. No subscriptions, no hidden costs, no limitations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formats Section -->
+    <section id="formats" class="formats">
+        <div class="container">
+            <div class="section-header">
+                <h2>Supported Formats</h2>
+                <p>Work with all major archive formats</p>
+            </div>
+            <div class="format-grid">
+                <div class="format-badge">.ZIP</div>
+                <div class="format-badge">.RAR</div>
+                <div class="format-badge">.7Z</div>
+                <div class="format-badge">.TAR</div>
+                <div class="format-badge">.TAR.GZ</div>
+                <div class="format-badge">.TAR.BZ2</div>
+                <div class="format-badge">.TAR.XZ</div>
+                <div class="format-badge">.TGZ</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="installation">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick Installation</h2>
+                <p>Get started in minutes</p>
+            </div>
+            <div class="install-container">
+                <div class="install-grid">
+                    <div class="step">
+                        <h3>Step 1: Download LinRZ</h3>
+                        <p>Download the application file to your computer</p>
+                        <div class="code-block">wget https://yoursite.com/linrz.py</div>
+                    </div>
+                    <div class="step">
+                        <h3>Step 2: Run LinRZ</h3>
+                        <p>Launch the application with GUI interface</p>
+                        <div class="code-block">python3 linrz.py</div>
+                    </div>
+                    <div class="step">
+                        <h3>Optional: Install Full Format Support</h3>
+                        <p>For 7Z and RAR support, install these packages</p>
+                        <div class="code-block">pip install py7zr rarfile</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="download" class="cta-section">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Download LinRZ now and simplify your file compression workflow</p>
+            <a href="#" class="btn btn-white btn-primary">Download LinRZ v1.0</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="LinRZ">
+                    <div>
+                        <div style="font-weight: 600; color: #1a1a1a;">LinRZ</div>
+                        <div style="font-size: 0.75rem; color: #6b7280;">by YUSR</div>
+                    </div>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#formats">Formats</a></li>
+                    <li><a href="#installation">Installation</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">GitHub</a></li>
+                </ul>
+                <div class="copyright">
+                    © 2025 YUSR. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
