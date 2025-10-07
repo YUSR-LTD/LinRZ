@@ -66,15 +66,17 @@
             text-align: center;
             margin-bottom: 4rem;
             animation: fadeInUp 1s ease-out;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .download-btn {
+        .download-btn, .source-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
             padding: 1.2rem 3rem;
-            background: #1a1a1a;
-            color: white;
             text-decoration: none;
             border-radius: 12px;
             font-size: 1.1rem;
@@ -83,8 +85,25 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
+        .download-btn {
+            background: #1a1a1a;
+            color: white;
+        }
+
         .download-btn:hover {
             background: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .source-btn {
+            background: white;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+        }
+
+        .source-btn:hover {
+            background: #f9fafb;
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
@@ -166,7 +185,7 @@
                 gap: 1.5rem;
             }
 
-            .download-btn {
+            .download-btn, .source-btn {
                 padding: 1rem 2rem;
                 font-size: 1rem;
             }
@@ -189,6 +208,10 @@
             <a href="https://www.dropbox.com/scl/fi/koyasw6qsw01tuv0bnu2g/linrz.x86_64?rlkey=ruys8cu3zstmb8sklws5ju2nu&st=oxm9l3dq&dl=1" class="download-btn" download>
                 <span class="download-icon">🐧</span>
                 Download for Linux
+            </a>
+            <a href="https://github.com/YUSR-LTD/LinRZ-SRC" class="source-btn" target="_blank" rel="noopener">
+                <span class="download-icon">💻</span>
+                Get Source Code
             </a>
         </div>
 
